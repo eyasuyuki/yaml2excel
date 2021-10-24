@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/eyasuyuki/yaml2excel/data"
 	"github.com/xuri/excelize/v2"
 	"gopkg.in/yaml.v2"
