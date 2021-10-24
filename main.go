@@ -9,7 +9,6 @@ import (
 	"log"
 	"os"
 	"github.com/urfave/cli/v2"
-	"strconv"
 	_ "image/jpeg"
 	_ "image/gif"
 	_ "image/png"
@@ -89,8 +88,12 @@ func writeRow(xlsx *excelize.File, sheet *data.Sheet, rowNum int64, row *data.Ro
 
 func writeCol(xlsx *excelize.File, sheet *data.Sheet, rowNum int64, colNum int64, col *data.Col, config *data.Config) int64 {
 	rowHeight := int64(1)
+	colName, err := excelize.CoordinatesToCellName(int(colNum), int(rowNum))
+	if err != nil {
+		log.Fatal(err)
+	}
 	if col.Img != "" {
-		xlsx.AddPicture(sheet.Name, getColumnName(rowNum, colNum), col.Img, "")
+		xlsx.AddPicture(sheet.Name, colName, col.Img, "")
 		if config.UseImageHeight {
 			image, err := readImage(col.Img)
 			if err != nil {
@@ -101,7 +104,7 @@ func writeCol(xlsx *excelize.File, sheet *data.Sheet, rowNum int64, colNum int64
 			rowHeight = int64(h)
 		}
 	} else {
-		xlsx.SetCellStr(sheet.Name, getColumnName(rowNum, colNum), col.Text)
+		xlsx.SetCellStr(sheet.Name, colName, col.Text)
 	}
 	return rowHeight
 }
@@ -114,27 +117,4 @@ func readImage(file string) (image.Image, error) {
 	defer f.Close()
 	image, _, err := image.Decode(f)
 	return image, err
-}
-
-func getColumnName(rowNum int64, colNum int64) string {
-	colName := ""
-	n := colNum
-	for n > 0 {
-		rem := n % 26
-		if rem == 0 {
-			colName += "Z"
-			n = (n / 26) - 1
-		} else {
-			colName += num2Col(rem - 1)
-			n = n / 26
-		}
-	}
-	result := colName + strconv.FormatInt(rowNum, 10)
-	//fmt.Println(result)
-	return result
-}
-
-func num2Col(n int64) string {
-	cols := []string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
-	return cols[n];
 }
