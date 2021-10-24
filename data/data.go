@@ -5,14 +5,10 @@ type Data struct {
 	Book *Book `yaml:"book"`
 }
 
-type Config struct {
-	HorizontalResolution float64 `yaml:"horizontal_resolution"`
-	VerticalResolution float64 `yaml:"vertical_resolution"`
-	RowHeight float64 `yaml:"row_height"`
-	MaxWidth float64 `yaml:"max_width"`
-	UseImageHeight bool `yaml:"use_image_height"`
-	ImgScale float64 `yaml:"img_scale""`
-	PdfScale float64 `yaml:"pdf_scale"`
+func CreateData() *Data {
+	return &Data{
+		Config: CreateConfig(),
+	}
 }
 
 func CreateConfig() *Config {
@@ -23,8 +19,16 @@ func CreateConfig() *Config {
 		MaxWidth: 190, // 210 - (10 x 2)
 		UseImageHeight: true,
 		ImgScale: 100.0,
-		PdfScale: 50.0,
 	}
+}
+
+type Config struct {
+	HorizontalResolution float64 `yaml:"horizontal_resolution"`
+	VerticalResolution float64 `yaml:"vertical_resolution"`
+	RowHeight float64 `yaml:"row_height"`
+	MaxWidth float64 `yaml:"max_width"`
+	UseImageHeight bool `yaml:"use_image_height"`
+	ImgScale float64 `yaml:"img_scale""`
 }
 
 type Book struct {

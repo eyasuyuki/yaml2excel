@@ -14,7 +14,7 @@ func TestRead(t *testing.T) {
 		log.Fatal(err)
 	}
 
-	data := &data.Data{}
+	data := data.CreateData()
 
 	err = yaml.Unmarshal(bytes, &data);
 	if err != nil {
@@ -22,7 +22,7 @@ func TestRead(t *testing.T) {
 	}
 
 
-	if data.Config != nil {
+	if data.Config == nil {
 		t.Errorf("expect: nil, but got %v \n", data.Config)
 	}
 
@@ -55,12 +55,12 @@ func TestRead(t *testing.T) {
 		t.Errorf("expect: \"これがB1に入る予定\", but got \"%v\" \n", data.Book.Sheets[0].Rows[0].Cols[1].Text)
 	}
 
-	if data.Book.Sheets[0].Rows[1].Cols[0].Img != "pic1.jpg" {
-		t.Errorf("expect: pic1.jpg, but gut %v \n", data.Book.Sheets[0].Rows[1].Cols[0].Img)
+	if data.Book.Sheets[0].Rows[1].Cols[0].Img != "assets/pic1.png" {
+		t.Errorf("expect: assets/pic1.png, but gut %v \n", data.Book.Sheets[0].Rows[1].Cols[0].Img)
 	}
 
-	if data.Book.Sheets[0].Rows[2].Cols[0].Img != "pic2.png" {
-		t.Errorf("expect: pic2.png, but gut %v \n", data.Book.Sheets[0].Rows[2].Cols[0].Img)
+	if data.Book.Sheets[0].Rows[2].Cols[0].Img != "assets/pic2.jpg" {
+		t.Errorf("expect: assets/pic2.jpg, but gut %v \n", data.Book.Sheets[0].Rows[2].Cols[0].Img)
 	}
 
 	if data.Book.Sheets[0].Rows[3].Cols[0].Text != "Test2" {

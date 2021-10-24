@@ -1,3 +1,5 @@
+config:
+  max_width: 180
 book:
   name: Book1
   sheets:
@@ -10,10 +12,10 @@ book:
             - text: これがB1に入る予定
         - row:
           cols:
-            - img: pic1.jpg
+            - img: assets/pic1.png
         - row:
           cols:
-            - img: pic2.png
+            - img: assets/pic2.jpg
         - row:
           cols:
             - text: Test2
