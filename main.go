@@ -12,6 +12,7 @@ import (
 	_ "image/jpeg"
 	_ "image/gif"
 	_ "image/png"
+	"strconv"
 )
 
 func main() {
@@ -93,14 +94,18 @@ func writeCol(xlsx *excelize.File, sheet *data.Sheet, rowNum int64, colNum int64
 		log.Fatal(err)
 	}
 	if col.Img != "" {
-		xlsx.AddPicture(sheet.Name, colName, col.Img, "")
+		scale := strconv.FormatFloat(config.ImgScale, 'f', -1, 64)
+		format := "{\"x_scale\": " + scale + ", \"y_scale\": " + scale + "}"
+		err = xlsx.AddPicture(sheet.Name, colName, col.Img, format)
+		if err != nil {
+			log.Fatal(err)
+		}
 		if config.UseImageHeight {
 			image, err := readImage(col.Img)
 			if err != nil {
 				log.Fatal(err)
 			}
-			// TODO use image dpi
-			h := float64(image.Bounds().Dy()) / config.HorizontalResolution * 25.4 / config.RowHeight
+			h := float64(image.Bounds().Dy()) / config.HorizontalResolution * 25.4 * config.ImgScale / config.RowHeight
 			rowHeight = int64(h)
 		}
 	} else {
