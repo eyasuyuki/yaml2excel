@@ -92,11 +92,11 @@ func writeCol(xlsx *excelize.File, sheet *data.Sheet, rowNum int64, colNum int64
 	if col.Img != "" {
 		xlsx.AddPicture(sheet.Name, getColumnName(rowNum, colNum), col.Img, "")
 		if config.UseImageHeight {
-			// TODO read img
 			image, err := readImage(col.Img)
 			if err != nil {
 				log.Fatal(err)
 			}
+			// TODO use image dpi
 			h := float64(image.Bounds().Dy()) / config.HorizontalResolution * 25.4 / config.RowHeight
 			rowHeight = int64(h)
 		}
