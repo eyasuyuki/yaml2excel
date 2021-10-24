@@ -1,0 +1,19 @@
+book:
+  name: Book1
+  sheets:
+    - sheet:
+      name: Sheet1
+      rows:
+        - row:
+          cols:
+            - text: This is test.
+            - text: これがB1に入る予定
+        - row:
+          cols:
+            - img: pic1.jpg
+        - row:
+          cols:
+            - img: pic2.png
+        - row:
+          cols:
+            - text: Test2
