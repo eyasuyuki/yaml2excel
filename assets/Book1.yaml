@@ -1,5 +1,6 @@
 config:
-  max_width: 180
+  vertical_resolution: 30.0
+  img_scale: 0.5
 book:
   name: Book1
   sheets:

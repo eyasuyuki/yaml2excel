@@ -105,7 +105,7 @@ func writeCol(xlsx *excelize.File, sheet *data.Sheet, rowNum int64, colNum int64
 			if err != nil {
 				log.Fatal(err)
 			}
-			h := float64(image.Bounds().Dy()) / config.HorizontalResolution * 25.4 * config.ImgScale / config.RowHeight
+			h := float64(image.Bounds().Dy()) / config.VerticalResolution * 25.4 * config.ImgScale / config.RowHeight
 			rowHeight = int64(h)
 		}
 	} else {
