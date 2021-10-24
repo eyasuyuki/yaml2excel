@@ -70,6 +70,7 @@ func writeSheet(xlsx *excelize.File, sheet *data.Sheet, config *data.Config) {
 	xlsx.NewSheet(sheet.Name)
 	rowNum := int64(0)
 	for _, row := range sheet.Rows {
+		rowNum++
 		rowNum = writeRow(xlsx, sheet, rowNum, row, config)
 	}
 }
@@ -117,20 +118,21 @@ func readImage(file string) (image.Image, error) {
 }
 
 func getColumnName(rowNum int64, colNum int64) string {
-	result := ""
+	colName := ""
 	n := colNum
 	for n > 0 {
 		rem := n % 26
 		if rem == 0 {
-			result += "Z"
+			colName += "Z"
 			n = (n / 26) - 1
 		} else {
-			result += num2Col(rem - 1)
+			colName += num2Col(rem - 1)
 			n = n / 26
 		}
 	}
-	fmt.Println(result);
-	return result + strconv.FormatInt(rowNum, 10)
+	result := colName + strconv.FormatInt(rowNum, 10)
+	//fmt.Println(result)
+	return result
 }
 
 func num2Col(n int64) string {
