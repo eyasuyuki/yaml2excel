@@ -71,7 +71,7 @@ config:
 
 ## ```vertital_resolution```
 
-Excel's vertital DPI. Default value is 96.0 (96 DPI).
+Excel's vertital DPI. Default value is ```96.0``` (96 DPI).
 
 ## ```use_image_height```
 
@@ -81,11 +81,13 @@ If false, Does not calculate image height and does not skip row number.
 
 ## ```img_scale```
 
-Scaling ratio of image. Default value is 1.0.
+Scaling ratio of image. Default value is ```1.0```.
 
 ## ```img_margin```
 
 Vertical margin after image.
+
+Default value is ```1.0```. It means: _one row height_.
 
 If ```use_image_height``` to false, This value does not use.
 
