@@ -110,7 +110,7 @@ func writeCol(xlsx *excelize.File, sheet *data.Sheet, rowNum int64, colNum int64
 				log.Fatal(err)
 			}
 			h := float64(image.Bounds().Dy()) / config.VerticalResolution * config.ImgScale / float64(rh) * 72.0
-			rowHeight = int64(h)
+			rowHeight = int64(h + config.ImgMargin)
 		}
 	} else {
 		xlsx.SetCellStr(sheet.Name, colName, col.Text)

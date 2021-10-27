@@ -13,9 +13,10 @@ func CreateData() *Data {
 
 func CreateConfig() *Config {
 	return &Config{
-		VerticalResolution:   96.0, // 96 dpi
-		UseImageHeight:       true,
-		ImgScale:             1.0,
+		VerticalResolution: 96.0, // 96 dpi
+		UseImageHeight:     true,
+		ImgScale:           1.0,
+		ImgMargin: 			1.0,
 	}
 }
 
@@ -23,6 +24,7 @@ type Config struct {
 	VerticalResolution   float64 `yaml:"vertical_resolution"`
 	UseImageHeight       bool    `yaml:"use_image_height"`
 	ImgScale             float64 `yaml:"img_scale""`
+	ImgMargin			float64 `yaml:"img_margin"`
 }
 
 type Book struct {
