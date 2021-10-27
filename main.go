@@ -2,16 +2,16 @@ package main
 
 import (
 	"github.com/eyasuyuki/yaml2excel/data"
+	"github.com/urfave/cli/v2"
 	"github.com/xuri/excelize/v2"
 	"gopkg.in/yaml.v2"
 	"image"
+	_ "image/gif"
+	_ "image/jpeg"
+	_ "image/png"
 	"io/ioutil"
 	"log"
 	"os"
-	"github.com/urfave/cli/v2"
-	_ "image/jpeg"
-	_ "image/gif"
-	_ "image/png"
 	"strconv"
 )
 
@@ -88,6 +88,10 @@ func writeRow(xlsx *excelize.File, sheet *data.Sheet, rowNum int64, row *data.Ro
 }
 
 func writeCol(xlsx *excelize.File, sheet *data.Sheet, rowNum int64, colNum int64, col *data.Col, config *data.Config) int64 {
+	rh, err := xlsx.GetRowHeight(sheet.Name, 1)
+	if err != nil {
+		log.Fatal(err)
+	}
 	rowHeight := int64(1)
 	colName, err := excelize.CoordinatesToCellName(int(colNum), int(rowNum))
 	if err != nil {
@@ -105,7 +109,7 @@ func writeCol(xlsx *excelize.File, sheet *data.Sheet, rowNum int64, colNum int64
 			if err != nil {
 				log.Fatal(err)
 			}
-			h := float64(image.Bounds().Dy()) / config.VerticalResolution * 25.4 * config.ImgScale / config.RowHeight
+			h := float64(image.Bounds().Dy()) / config.VerticalResolution * config.ImgScale / float64(rh) * 72.0
 			rowHeight = int64(h)
 		}
 	} else {
