@@ -40,17 +40,19 @@ func convert(c *cli.Context) error {
 		log.Fatal(err)
 	}
 
-	var xlsx = excelize.NewFile()
-	if err != nil {
-		log.Fatal(err)	}
+	for _, book := range data.Books {
+		var xlsx = excelize.NewFile()
+		if err != nil {
+			log.Fatal(err)	}
 
-	writeBook(xlsx, data.Book, data.Config)
+		writeBook(xlsx, book, data.Config)
 
-	err = xlsx.SaveAs(data.Book.Name + ".xlsx")
-	if err != nil {
-		log.Fatal(err)
+		err = xlsx.SaveAs(book.Name + ".xlsx")
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
-
+	
 	return nil
 }
 

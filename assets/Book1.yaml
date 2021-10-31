@@ -1,21 +1,22 @@
 config:
   img_scale: 0.5
-book:
-  name: Book1
-  sheets:
-    - sheet:
-      name: Sheet1
-      rows:
-        - row:
-          cols:
-            - text: This is test.
-            - text: これがB1に入る予定
-        - row:
-          cols:
-            - img: assets/pic1.png
-        - row:
-          cols:
-            - img: assets/pic2.jpg
-        - row:
-          cols:
-            - text: Test2
+books:
+  - book:
+    name: Book1
+    sheets:
+      - sheet:
+        name: Sheet1
+        rows:
+          - row:
+            cols:
+              - text: This is test.
+              - text: これがB1に入る予定
+          - row:
+            cols:
+              - img: assets/pic1.png
+          - row:
+            cols:
+              - img: assets/pic2.jpg
+          - row:
+            cols:
+              - text: Test2

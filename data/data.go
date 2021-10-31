@@ -2,7 +2,7 @@ package data
 
 type Data struct {
 	Config *Config `yaml:"config"`
-	Book   *Book   `yaml:"book"`
+	Books  []*Book   `yaml:"books"`
 }
 
 func CreateData() *Data {
