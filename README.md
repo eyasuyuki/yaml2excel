@@ -20,17 +20,18 @@ yaml2exls <YAML file name>
 
 ```
 config:
-book:
-  name:
-  sheets:
-    - sheet:
-      name:
-      rows:
-        - row:
-          cols:
-            - col
-              text:
-              img:
+books:
+  - book:
+    name:
+    sheets:
+      - sheet:
+        name:
+        rows:
+          - row:
+            cols:
+              - col
+                text:
+                img:
 ```
 
 # YAML example
@@ -38,25 +39,47 @@ book:
 ```
 config:
   img_scale: 0.5
-book:
-  name: Book1
-  sheets:
-    - sheet:
-      name: Sheet1
-      rows:
-        - row:
-          cols:
-            - text: This is test.
-            - text: これがB1に入る予定
-        - row:
-          cols:
-            - img: assets/pic1.png
-        - row:
-          cols:
-            - img: assets/pic2.jpg
-        - row:
-          cols:
-            - text: Test2
+books:
+  - book:
+    name: Book1
+    sheets:
+      - sheet:
+        name: Sheet1
+        rows:
+          - row:
+            cols:
+              - text: This is test.
+              - text: これがB1に入る予定
+          - row:
+            cols:
+              - img: assets/pic1.png
+          - row:
+            cols:
+              - img: assets/pic2.jpg
+          - row:
+            cols:
+              - text: Test2
+      - sheet:
+        name: シート2だよ
+        rows:
+          - row:
+            cols:
+              - text: Some text
+  - book:
+    name: 日本語ブック名(仮)
+    sheets:
+      - sheet:
+        name: あああ
+        rows:
+          - row:
+            cols:
+              - text: HogePiyo
+      - sheet:
+        name: 2.Test
+        rows:
+          - row:
+            cols:
+              - img: assets/pic2.jpg
 ```
 
 # default config value
@@ -90,6 +113,10 @@ Vertical margin after image.
 Default value is ```1.0```. It means: _one row height_.
 
 If ```use_image_height``` to false, This value does not use.
+
+# ```books```
+
+Array of ```book```.
 
 # ```book```
 
