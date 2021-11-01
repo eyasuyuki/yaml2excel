@@ -17,8 +17,8 @@ import (
 
 func main() {
 	app := &cli.App{
-		Name:  "yaml2excel",
-		Usage: "yaml2excel <yaml filename>",
+		Name:   "yaml2excel",
+		Usage:  "yaml2excel <yaml filename>",
 		Action: convert,
 	}
 
@@ -43,7 +43,8 @@ func convert(c *cli.Context) error {
 	for _, book := range data.Books {
 		var xlsx = excelize.NewFile()
 		if err != nil {
-			log.Fatal(err)	}
+			log.Fatal(err)
+		}
 
 		writeBook(xlsx, book, data.Config)
 
@@ -52,22 +53,22 @@ func convert(c *cli.Context) error {
 			log.Fatal(err)
 		}
 	}
-	
+
 	return nil
 }
 
 func writeBook(xlsx *excelize.File, book *data.Book, config *data.Config) {
-	for _, sheet := range book.Sheets {
+	for n, sheet := range book.Sheets {
+		if n == 0 {
+			xlsx.SetSheetName("Sheet1", sheet.Name)
+		} else {
+			xlsx.NewSheet(sheet.Name)
+		}
 		writeSheet(xlsx, sheet, config)
 	}
 }
 
 func writeSheet(xlsx *excelize.File, sheet *data.Sheet, config *data.Config) {
-	if xlsx.SheetCount == 1 {
-		xlsx.SetSheetName("Sheet1", sheet.Name)
-	} else {
-		xlsx.NewSheet(sheet.Name)
-	}
 	xlsx.NewSheet(sheet.Name)
 	rowNum := int64(0)
 	for _, row := range sheet.Rows {
