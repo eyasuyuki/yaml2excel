@@ -20,3 +20,24 @@ books:
           - row:
             cols:
               - text: Test2
+      - sheet:
+        name: シート2だよ
+        rows:
+          - row:
+            cols:
+              - text: Some text
+  - book:
+    name: 日本語ブック名(仮)
+    sheets:
+      - sheet:
+        name: あああ
+        rows:
+          - row:
+            cols:
+              - text: HogePiyo
+      - sheet:
+        name: 2.Test
+        rows:
+          - row:
+            cols:
+              - img: assets/pic2.jpg
