@@ -1,0 +1,36 @@
+config:
+  img_scale: 0.5
+books:
+  - book:
+    name: 日本語ブック名2(仮)
+    sheets:
+      - sheet:
+        name: 1
+        rows:
+          - row:
+            cols:
+              - img: assets/01.png
+      - sheet:
+        name: 2
+        rows:
+          - row:
+            cols:
+              - img: assets/02.png
+      - sheet:
+        name: 3
+        rows:
+          - row:
+            cols:
+              - img: assets/03.png
+      - sheet:
+        name: 4
+        rows:
+          - row:
+            cols:
+              - img: assets/04.png
+      - sheet:
+        name: 5
+        rows:
+          - row:
+            cols:
+              - img: assets/05.png
