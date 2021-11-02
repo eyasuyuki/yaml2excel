@@ -1,5 +1,3 @@
-config:
-  img_scale: 0.5
 books:
   - book:
     name: 日本語ブック名2(仮)
